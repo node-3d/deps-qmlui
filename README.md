@@ -2,14 +2,14 @@
 
 This is a part of [Node3D](https://github.com/node-3d) project.
 
-[![NPM](https://badge.fury.io/js/deps-qmlui-raub.svg)](https://badge.fury.io/js/deps-qmlui-raub)
-[![ESLint](https://github.com/node-3d/deps-qmlui-raub/actions/workflows/eslint.yml/badge.svg)](https://github.com/node-3d/deps-qmlui-raub/actions/workflows/eslint.yml)
-[![Test](https://github.com/node-3d/deps-qmlui-raub/actions/workflows/test.yml/badge.svg)](https://github.com/node-3d/deps-qmlui-raub/actions/workflows/test.yml)
-[![Cpplint](https://github.com/node-3d/deps-qmlui-raub/actions/workflows/cpplint.yml/badge.svg)](https://github.com/node-3d/deps-qmlui-raub/actions/workflows/cpplint.yml)
-[![Build](https://github.com/node-3d/deps-qmlui-raub/actions/workflows/build.yml/badge.svg)](https://github.com/node-3d/deps-qmlui-raub/actions/workflows/build.yml)
+[![NPM](https://badge.fury.io/js/%40node-3d%2Fdeps-qmlui.svg)](https://badge.fury.io/js/@node-3d/deps-qmlui)
+[![Lint](https://github.com/node-3d/deps-qmlui/actions/workflows/lint.yml/badge.svg)](https://github.com/node-3d/deps-qmlui/actions/workflows/lint.yml)
+[![Test](https://github.com/node-3d/deps-qmlui/actions/workflows/test.yml/badge.svg)](https://github.com/node-3d/deps-qmlui/actions/workflows/test.yml)
+[![Cpplint](https://github.com/node-3d/deps-qmlui/actions/workflows/cpplint.yml/badge.svg)](https://github.com/node-3d/deps-qmlui/actions/workflows/cpplint.yml)
+[![Build](https://github.com/node-3d/deps-qmlui/actions/workflows/build.yml/badge.svg)](https://github.com/node-3d/deps-qmlui/actions/workflows/build.yml)
 
 ```console
-npm i -s deps-qmlui-raub
+npm install @node-3d/deps-qmlui
 ```
 
 **OpenGL QML offscreen** renderer with **non-Qt C++ API**.
@@ -37,7 +37,7 @@ See [QmlUi header](/include/qml-ui.hpp) for more details.
 
 ## Building addons
 
-Requiring this module on Windows - `require('deps-qmlui-raub')` - adds Qt's DLL
+Requiring this module on Windows - `require('@node-3d/deps-qmlui')` - adds Qt's DLL
 location to ENV PATH. On Unix this does nothing, as library directories are not in ENV PATH.
 The paths for Unix have to be compiled into the node-addon with `rpath` option.
 
@@ -47,11 +47,11 @@ The paths for Unix have to be compiled into the node-addon with `rpath` option.
 
 ```javascript
   'variables': {
-    'qt_core_bin': '<!(node -p "require(\'deps-qmlui-raub\').core.bin")',
-    'qt_gui_bin': '<!(node -p "require(\'deps-qmlui-raub\').gui.bin")',
-    'qt_qml_bin': '<!(node -p "require(\'deps-qmlui-raub\').qml.bin")',
-    'qmlui_include': '<!(node -p "require(\'deps-qmlui-raub\').include")',
-    'qmlui_bin': '<!(node -p "require(\'deps-qmlui-raub\').bin")',
+    'qt_core_bin': '<!(node -p "require(\'@node-3d/deps-qmlui\').core.bin")',
+    'qt_gui_bin': '<!(node -p "require(\'@node-3d/deps-qmlui\').gui.bin")',
+    'qt_qml_bin': '<!(node -p "require(\'@node-3d/deps-qmlui\').qml.bin")',
+    'qmlui_include': '<!(node -p "require(\'@node-3d/deps-qmlui\').include")',
+    'qmlui_bin': '<!(node -p "require(\'@node-3d/deps-qmlui\').bin")',
   },
   ...
   'targets': [
@@ -70,14 +70,14 @@ The paths for Unix have to be compiled into the node-addon with `rpath` option.
         ['OS=="linux"', {
           'libraries': [
             "-Wl,-rpath,'$$ORIGIN'",
-            "-Wl,-rpath,'$$ORIGIN/../node_modules/deps-qt-core-raub/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../node_modules/deps-qt-gui-raub/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../node_modules/deps-qt-qml-raub/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../node_modules/deps-qmlui-raub/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../../deps-qt-core-raub/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../../deps-qt-gui-raub/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../../deps-qt-qml-raub/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../../deps-qmlui-raub/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-core/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-gui/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-qml/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qmlui/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-core/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-gui/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-qml/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qmlui/bin-linux'",
           ],
         }],
         
@@ -85,14 +85,14 @@ The paths for Unix have to be compiled into the node-addon with `rpath` option.
           'libraries': [
             '<(qmlui_bin)/libqmlui.dylib',
             '-Wl,-rpath,@loader_path',
-            '-Wl,-rpath,@loader_path/../node_modules/deps-qt-core-raub/bin-osx',
-            '-Wl,-rpath,@loader_path/../node_modules/deps-qt-gui-raub/bin-osx',
-            '-Wl,-rpath,@loader_path/../node_modules/deps-qt-qml-raub/bin-osx',
-            '-Wl,-rpath,@loader_path/../node_modules/deps-qmlui-raub/bin-osx',
-            '-Wl,-rpath,@loader_path/../../deps-qt-core-raub/bin-osx',
-            '-Wl,-rpath,@loader_path/../../deps-qt-gui-raub/bin-osx',
-            '-Wl,-rpath,@loader_path/../../deps-qt-qml-raub/bin-osx',
-            '-Wl,-rpath,@loader_path/../../deps-qmlui-raub/bin-osx',
+            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-core/bin-osx',
+            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-gui/bin-osx',
+            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-qml/bin-osx',
+            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qmlui/bin-osx',
+            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-core/bin-osx',
+            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-gui/bin-osx',
+            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-qml/bin-osx',
+            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qmlui/bin-osx',
           ],
         }],
         

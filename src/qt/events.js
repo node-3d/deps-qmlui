@@ -1,4 +1,4 @@
-'use strict';
+// oxlint-disable no-implicit-globals, no-immediate-mutation, func-style, no-unused-vars
 
 /* global Qt */
 
@@ -105,7 +105,6 @@ function MouseEvent(type, mouse) {
 let prevX = 0;
 let prevY = 0;
 
-// eslint-disable-next-line no-unused-vars
 function MouseMoveEvent(mouse) {
 	MouseEvent.call(this, 'mousemove', mouse);
 	
@@ -116,33 +115,33 @@ function MouseMoveEvent(mouse) {
 	prevY = mouse.y;
 }
 
+const WHEEL_ANGLE_DELTA = 120;
+const WHEEL_DELTA = 100;
 
-// eslint-disable-next-line no-unused-vars
 function MouseWheelEvent(mouse) {
 	MouseEvent.call(this, 'wheel', mouse);
 	
-	this.wheelDeltaX = mouse.angleDelta.x > 0 ? 120 : -120;
-	this.wheelDeltaY = mouse.angleDelta.y > 0 ? 120 : -120;
+	this.wheelDeltaX = mouse.angleDelta.x > 0 ? WHEEL_ANGLE_DELTA : -WHEEL_ANGLE_DELTA;
+	this.wheelDeltaY = mouse.angleDelta.y > 0 ? WHEEL_ANGLE_DELTA : -WHEEL_ANGLE_DELTA;
 	this.wheelDelta = this.wheelDeltaY;
-	this.deltaX = mouse.angleDelta.x > 0 ? 100 : -100;
-	this.deltaY = mouse.angleDelta.y > 0 ? 100 : -100;
+	this.deltaX = mouse.angleDelta.x > 0 ? WHEEL_DELTA : -WHEEL_DELTA;
+	this.deltaY = mouse.angleDelta.y > 0 ? WHEEL_DELTA : -WHEEL_DELTA;
 	this.deltaZ = 0;
 }
 
 
-// eslint-disable-next-line no-unused-vars
 function KeyEvent(type, event) {
 	this.type = type;
 	
 	this.which = KEY_CODES[event.key] || event.key;
 	this.keyCode = this.which;
 	
-	this.charCode = event.text.charCodeAt(0);
+	this.charCode = event.text.codePointAt(0);
 	
 	this.key = event.text || KEY_NAMES[event.key] || ' ';
 	event.code = (
 		KEY_NAMES[event.key] ||
-		(event.text && ('Key' + event.text)) ||
+		(event.text && `Key${event.text}`) ||
 		'UNKNOWN'
 	);
 	
