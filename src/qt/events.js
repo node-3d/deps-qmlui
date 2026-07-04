@@ -2,7 +2,6 @@
 
 /* global Qt */
 
-
 const MOUSE_BUTTONS = {};
 MOUSE_BUTTONS[Qt.LeftButton] = 0;
 MOUSE_BUTTONS[Qt.RightButton] = 2;
@@ -44,7 +43,6 @@ KEY_CODES[Qt.Key_Super_R] = 93;
 KEY_CODES[Qt.Key_Tab] = 9;
 KEY_CODES[Qt.Key_Up] = 38;
 
-
 const KEY_NAMES = {};
 KEY_NAMES[Qt.Key_Alt] = 'Alt';
 KEY_NAMES[Qt.Key_Backspace] = 'Backspace';
@@ -81,36 +79,34 @@ KEY_NAMES[Qt.Key_Super_R] = 'Super_R';
 KEY_NAMES[Qt.Key_Tab] = 'Tab';
 KEY_NAMES[Qt.Key_Up] = 'Up';
 
-
 function MouseEvent(type, mouse) {
 	this.type = type;
-	
+
 	this.button = MOUSE_BUTTONS[mouse.button] || 0;
 	this.buttons = mouse.buttons;
-	
+
 	this.x = mouse.x;
 	this.y = mouse.y;
 	this.clientX = mouse.x;
 	this.clientY = mouse.y;
 	this.pageX = mouse.x;
 	this.pageY = mouse.y;
-	
+
 	this.altKey = (mouse.modifiers & Qt.AltModifier) > 0;
 	this.ctrlKey = (mouse.modifiers & Qt.ControlModifier) > 0;
 	this.metaKey = (mouse.modifiers & Qt.MetaModifier) > 0;
 	this.shiftKey = (mouse.modifiers & Qt.ShiftModifier) > 0;
 }
 
-
 let prevX = 0;
 let prevY = 0;
 
 function MouseMoveEvent(mouse) {
 	MouseEvent.call(this, 'mousemove', mouse);
-	
+
 	this.movementX = mouse.x - prevX;
 	this.movementY = mouse.x - prevY;
-	
+
 	prevX = mouse.x;
 	prevY = mouse.y;
 }
@@ -120,7 +116,7 @@ const WHEEL_DELTA = 100;
 
 function MouseWheelEvent(mouse) {
 	MouseEvent.call(this, 'wheel', mouse);
-	
+
 	this.wheelDeltaX = mouse.angleDelta.x > 0 ? WHEEL_ANGLE_DELTA : -WHEEL_ANGLE_DELTA;
 	this.wheelDeltaY = mouse.angleDelta.y > 0 ? WHEEL_ANGLE_DELTA : -WHEEL_ANGLE_DELTA;
 	this.wheelDelta = this.wheelDeltaY;
@@ -129,24 +125,19 @@ function MouseWheelEvent(mouse) {
 	this.deltaZ = 0;
 }
 
-
 function KeyEvent(type, event) {
 	this.type = type;
-	
+
 	this.which = KEY_CODES[event.key] || event.key;
 	this.keyCode = this.which;
-	
+
 	this.charCode = event.text.codePointAt(0);
-	
+
 	this.key = event.text || KEY_NAMES[event.key] || ' ';
-	event.code = (
-		KEY_NAMES[event.key] ||
-		(event.text && `Key${event.text}`) ||
-		'UNKNOWN'
-	);
-	
+	event.code = KEY_NAMES[event.key] || (event.text && `Key${event.text}`) || 'UNKNOWN';
+
 	this.repeat = event.isAutoRepeat;
-	
+
 	this.altKey = (event.modifiers & Qt.AltModifier) > 0;
 	this.ctrlKey = (event.modifiers & Qt.ControlModifier) > 0;
 	this.metaKey = (event.modifiers & Qt.MetaModifier) > 0;
