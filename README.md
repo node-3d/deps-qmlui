@@ -19,7 +19,7 @@ scenes to textures. The QML renderer has a separate OpenGL context, so
 
 Binaries are prebuilt and then used as dependency package.
 
-* Platforms (x64): Windows, Linux, Linux ARM, MacOS ARM.
+* Platforms: Windows x64, Linux x64, Linux ARM64, macOS ARM64.
 * Library: QmlUi.
 * Linking: static dll-type.
 
@@ -32,7 +32,7 @@ Binaries are prebuilt and then used as dependency package.
 1. Receive an OpenGL texture ID and use it somehow.
 1. Send/receive input and other events.
 
-See [QmlUi header](/include/qml-ui.hpp) for more details.
+See [QmlUi header](include/qml-ui.hpp) for more details.
 
 
 ## Building addons
@@ -157,7 +157,7 @@ via dynamic linking of the library.
 These **terms and conditions** allow using (unmodified) Qt as a
 shared library (DLL), in a closed-source project.
 
-Qt licensing information (a COPY) is given in a [separate file](/QT_LGPL),
+Qt licensing information (a copy) is given in a [separate file](QT_LGPL),
 which also can be found on
 [Qt's official web-site](http://doc.qt.io/qt-6/lgpl.html).
 
