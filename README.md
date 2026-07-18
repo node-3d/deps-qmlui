@@ -1,4 +1,4 @@
-# QmlUi binaries
+# QmlUi binaries and headers
 
 This is a part of [Node3D](https://github.com/node-3d) project.
 
@@ -12,14 +12,30 @@ This is a part of [Node3D](https://github.com/node-3d) project.
 npm install @node-3d/deps-qmlui
 ```
 
+## Binary Provenance
+
+Release binary archives for this package are published by public GitHub Actions
+workflows.
+When a release asset includes a GitHub Artifact Attestation, you can verify that
+the downloaded archive was published by the visible workflow in this repository:
+
+```console
+gh release download <tag> -R node-3d/deps-qmlui -p <platform>.gz
+gh attestation verify <platform>.gz -R node-3d/deps-qmlui
+```
+
+The attestation links the archive to the repository, workflow, commit, and
+release build identity. It does not replace review of the source code, workflow,
+or third-party library contents.
+
 **OpenGL QML offscreen** renderer with **non-Qt C++ API**.
 Uses [QQuickRenderControl](https://doc.qt.io/qt-6/qquickrendercontrol.html) (**Qt 6.8.0**) to render QML
 scenes to textures. The QML renderer has a separate OpenGL context, so
 [resource sharing](https://www.glfw.org/docs/3.4/context_guide.html#context_sharing) is used.
 
-Binaries are prebuilt and then used as dependency package.
+Binaries and headers are prebuilt and then used as dependency package.
 
-* Platforms: Windows x64, Linux x64, Linux ARM64, macOS ARM64.
+* Platforms: Windows x64, Linux x64/ARM64, macOS ARM64.
 * Library: QmlUi.
 * Linking: static dll-type.
 
