@@ -44,7 +44,7 @@ jobs:
     name: Build
     strategy:
         matrix:
-          os: [ubuntu-22.04, windows-2022, macos-14]
+          os: [ubuntu-22.04, windows-2022, macos-26]
 
     runs-on: ${{ matrix.os }}
 
@@ -99,7 +99,7 @@ jobs:
           cp src/libqmlui.so bin-linux
 
       - name: Build - MacOS ARM
-        if: matrix.os == 'macos-14'
+        if: matrix.os == 'macos-26'
         run: |
           echo "OS_NAME=darwin-arm64" >> $GITHUB_ENV
           qmake -spec macx-clang "QMAKE_CXXFLAGS+=-ObjC++" "QMAKE_LFLAGS_SONAME=-Wl,-install_name,@rpath/" "INCLUDEPATH+=${{ github.workspace }}/../Qt/6.8.0/macos/include" src/qt/_qmlui.pro
