@@ -8,25 +8,22 @@ This is a part of [Node3D](https://github.com/node-3d) project.
 [![Cpplint](https://github.com/node-3d/deps-qmlui/actions/workflows/cpplint.yml/badge.svg)](https://github.com/node-3d/deps-qmlui/actions/workflows/cpplint.yml)
 [![Build](https://github.com/node-3d/deps-qmlui/actions/workflows/build.yml/badge.svg)](https://github.com/node-3d/deps-qmlui/actions/workflows/build.yml)
 
-```console
+```bash
 npm install @node-3d/deps-qmlui
 ```
 
-## Binary Provenance
+## Binary Origin
 
-Release binary archives for this package are published by public GitHub Actions
-workflows.
-When a release asset includes a GitHub Artifact Attestation, you can verify that
-the downloaded archive was published by the visible workflow in this repository:
+Release archives are built by this repository's public GitHub Actions workflows.
 
-```console
+Attestations: https://github.com/node-3d/deps-qmlui/attestations
+
+To verify a downloaded archive:
+
+```bash
 gh release download <tag> -R node-3d/deps-qmlui -p <platform>.gz
 gh attestation verify <platform>.gz -R node-3d/deps-qmlui
 ```
-
-The attestation links the archive to the repository, workflow, commit, and
-release build identity. It does not replace review of the source code, workflow,
-or third-party library contents.
 
 **OpenGL QML offscreen** renderer with **non-Qt C++ API**.
 Uses [QQuickRenderControl](https://doc.qt.io/qt-6/qquickrendercontrol.html) (**Qt 6.8.0**) to render QML
