@@ -12,18 +12,7 @@ This is a part of [Node3D](https://github.com/node-3d) project.
 npm install @node-3d/deps-qmlui
 ```
 
-## Binary Origin
 
-Release archives are built by this repository's public GitHub Actions workflows.
-
-Attestations: https://github.com/node-3d/deps-qmlui/attestations
-
-To verify a downloaded archive:
-
-```bash
-gh release download <tag> -R node-3d/deps-qmlui -p <platform>.gz
-gh attestation verify <platform>.gz -R node-3d/deps-qmlui
-```
 
 **OpenGL QML offscreen** renderer with **non-Qt C++ API**.
 Uses [QQuickRenderControl](https://doc.qt.io/qt-6/qquickrendercontrol.html) (**Qt 6.8.0**) to render QML
@@ -177,3 +166,16 @@ which also can be found on
 ---
 
 The rest of this package is MIT licensed.
+
+## Binary Origin
+
+Release archives are built by this repository's public GitHub Actions workflows.
+
+Attestations: https://github.com/node-3d/deps-qmlui/attestations
+
+To verify a downloaded archive:
+
+```bash
+gh release download <tag> -R node-3d/deps-qmlui -p <platform>.gz
+gh attestation verify <platform>.gz -R node-3d/deps-qmlui
+```
