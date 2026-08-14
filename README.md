@@ -25,9 +25,17 @@ Binaries and headers are prebuilt and then used as dependency package.
 * Library: QmlUi.
 * Linking: static dll-type.
 
-Windows ARM64 is not currently published for this package because QmlUi depends on
-Qt OpenGL and the Qt 6.8.0 Windows ARM64 desktop package does not expose the
-`opengl` qmake module.
+## Windows ARM64 support
+
+Windows ARM64 is not currently supported by this package.
+
+QmlUi renders QML into an OpenGL FBO from a Qt-owned `QOpenGLContext` that shares resources
+with Node3D's existing OpenGL context, then returns the resulting OpenGL texture
+ID to Node3D. That contract requires a real OpenGL API surface, Qt's OpenGL
+rendering path, and a Qt OpenGL module build.
+
+The Qt 6.8.0 Windows ARM64 desktop package used by the release workflow does not
+expose the `opengl` qmake module required by QmlUi's build.
 
 
 ## Common workflow
