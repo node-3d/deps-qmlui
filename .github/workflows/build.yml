@@ -71,7 +71,7 @@ jobs:
             archive: linux
             qmake_spec: linux-g++-64
           - target: linux-arm64
-            os: ubuntu-22.04-arm
+            os: ubuntu-24.04-arm
             node_arch: arm64
             qt_host: linux_arm64
             qt_arch: linux_gcc_arm64
@@ -79,7 +79,7 @@ jobs:
             archive: aarch64
             qmake_spec: linux-g++
           - target: darwin-x64
-            os: macos-26-intel
+            os: macos-15-intel
             node_arch: x64
             qt_host: mac
             qt_arch: clang_64
@@ -87,7 +87,7 @@ jobs:
             archive: osx
             apple_archs: x86_64
           - target: darwin-arm64
-            os: macos-26
+            os: macos-15
             node_arch: arm64
             qt_host: mac
             qt_arch: ''
@@ -102,14 +102,6 @@ jobs:
             qt_dir: msvc2022_64
             archive: windows
             msvc_arch: x64
-          - target: windows-arm64
-            os: windows-11-arm
-            node_arch: arm64
-            qt_host: windows_arm64
-            qt_arch: win64_msvc2022_arm64
-            qt_dir: msvc2022_arm64
-            archive: win32-arm64
-            msvc_arch: arm64
 
     runs-on: ${{ matrix.os }}
 

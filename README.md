@@ -21,9 +21,13 @@ scenes to textures. The QML renderer has a separate OpenGL context, so
 
 Binaries and headers are prebuilt and then used as dependency package.
 
-* Platforms: Windows x64/ARM64, Linux x64/ARM64, macOS x64/ARM64.
+* Platforms: Windows x64, Linux x64/ARM64, macOS x64/ARM64.
 * Library: QmlUi.
 * Linking: static dll-type.
+
+Windows ARM64 is not currently published for this package because QmlUi depends on
+Qt OpenGL and the Qt 6.8.0 Windows ARM64 desktop package does not expose the
+`opengl` qmake module.
 
 
 ## Common workflow
