@@ -21,7 +21,7 @@ scenes to textures. The QML renderer has a separate OpenGL context, so
 
 Binaries and headers are prebuilt and then used as dependency package.
 
-* Platforms: Windows x64, Linux x64/ARM64, macOS ARM64.
+* Platforms: Windows x64/ARM64, Linux x64/ARM64, macOS x64/ARM64.
 * Library: QmlUi.
 * Linking: static dll-type.
 
@@ -49,6 +49,7 @@ The paths for Unix have to be compiled into the node-addon with `rpath` option.
 
 ```javascript
   'variables': {
+    'bin': '<!(node -p "require(\'@node-3d/addon-tools\').getBin()")',
     'qt_core_bin': '<!(node -p "require(\'@node-3d/deps-qmlui\').core.bin")',
     'qt_gui_bin': '<!(node -p "require(\'@node-3d/deps-qmlui\').gui.bin")',
     'qt_qml_bin': '<!(node -p "require(\'@node-3d/deps-qmlui\').qml.bin")',
@@ -72,14 +73,14 @@ The paths for Unix have to be compiled into the node-addon with `rpath` option.
         ['OS=="linux"', {
           'libraries': [
             "-Wl,-rpath,'$$ORIGIN'",
-            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-core/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-gui/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-qml/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qmlui/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-core/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-gui/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-qml/bin-linux'",
-            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qmlui/bin-linux'",
+            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-core/<(bin)'",
+            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-gui/<(bin)'",
+            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qt-qml/<(bin)'",
+            "-Wl,-rpath,'$$ORIGIN/../node_modules/@node-3d/deps-qmlui/<(bin)'",
+            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-core/<(bin)'",
+            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-gui/<(bin)'",
+            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qt-qml/<(bin)'",
+            "-Wl,-rpath,'$$ORIGIN/../../@node-3d/deps-qmlui/<(bin)'",
           ],
         }],
         
@@ -87,14 +88,14 @@ The paths for Unix have to be compiled into the node-addon with `rpath` option.
           'libraries': [
             '<(qmlui_bin)/libqmlui.dylib',
             '-Wl,-rpath,@loader_path',
-            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-core/bin-osx',
-            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-gui/bin-osx',
-            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-qml/bin-osx',
-            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qmlui/bin-osx',
-            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-core/bin-osx',
-            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-gui/bin-osx',
-            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-qml/bin-osx',
-            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qmlui/bin-osx',
+            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-core/<(bin)',
+            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-gui/<(bin)',
+            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qt-qml/<(bin)',
+            '-Wl,-rpath,@loader_path/../node_modules/@node-3d/deps-qmlui/<(bin)',
+            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-core/<(bin)',
+            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-gui/<(bin)',
+            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qt-qml/<(bin)',
+            '-Wl,-rpath,@loader_path/../../@node-3d/deps-qmlui/<(bin)',
           ],
         }],
         

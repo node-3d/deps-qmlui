@@ -1,4 +1,5 @@
 import { getPaths } from '@node-3d/addon-tools';
+import qml, { core, gui } from '@node-3d/deps-qt-qml';
 
 const paths = getPaths(import.meta.dirname);
 
