@@ -172,8 +172,11 @@ jobs:
         if: startsWith(matrix.target, 'linux-')
         run: |
           echo "OS_NAME=${{ matrix.archive }}" >> $GITHUB_ENV
+          sudo apt-get update -qq
+          sudo apt-get install -qq patchelf
           qmake -spec ${{ matrix.qmake_spec }} src/qt/_qmlui.pro
           make
+          patchelf --force-rpath --set-rpath '$ORIGIN:$ORIGIN/../node_modules/@node-3d/deps-qt-core/bin-${{ matrix.archive }}:$ORIGIN/../node_modules/@node-3d/deps-qt-gui/bin-${{ matrix.archive }}:$ORIGIN/../node_modules/@node-3d/deps-qt-qml/bin-${{ matrix.archive }}:$ORIGIN/../../deps-qt-core/bin-${{ matrix.archive }}:$ORIGIN/../../deps-qt-gui/bin-${{ matrix.archive }}:$ORIGIN/../../deps-qt-qml/bin-${{ matrix.archive }}' src/libqmlui.so
           rm -rf bin-${{ matrix.archive }}
           mkdir bin-${{ matrix.archive }}
           cp src/libqmlui.so bin-${{ matrix.archive }}
