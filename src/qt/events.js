@@ -82,7 +82,7 @@ KEY_NAMES[Qt.Key_Up] = 'Up';
 function MouseEvent(type, mouse) {
 	this.type = type;
 
-	this.button = MOUSE_BUTTONS[mouse.button] || 0;
+	this.button = MOUSE_BUTTONS[mouse.button] ?? 0;
 	this.buttons = mouse.buttons;
 
 	this.x = mouse.x;
@@ -128,7 +128,7 @@ function MouseWheelEvent(mouse) {
 function KeyEvent(type, event) {
 	this.type = type;
 
-	this.which = KEY_CODES[event.key] || event.key;
+	this.which = KEY_CODES[event.key] ?? event.key;
 	this.keyCode = this.which;
 
 	this.charCode = event.text.codePointAt(0);
