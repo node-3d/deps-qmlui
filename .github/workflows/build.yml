@@ -191,6 +191,21 @@ jobs:
           mkdir bin-${{ matrix.archive }}
           cp src/libqmlui.dylib bin-${{ matrix.archive }}
 
+      - name: Verify macOS deployment target
+        if: startsWith(matrix.target, 'darwin-')
+        run: |
+          set -euo pipefail
+          versions="$(otool -l bin-${{ matrix.archive }}/libqmlui.dylib | awk '
+            $1 == "cmd" {
+              wanted = $2 == "LC_BUILD_VERSION" ? "minos" : ($2 == "LC_VERSION_MIN_MACOSX" ? "version" : "")
+            }
+            wanted != "" && $1 == wanted { print $2; wanted = "" }
+          ')"
+          if [ -z "$versions" ] || printf '%s\n' "$versions" | grep -Evxq '13\.5(\.0)?'; then
+            echo "Unexpected or missing macOS deployment target: $versions" >&2
+            exit 1
+          fi
+
       - name: Get Package Version
         id: package-version
         run: |

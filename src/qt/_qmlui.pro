@@ -23,6 +23,7 @@ unix {
 
 macx {
 	DESTDIR = $$PWD/..
+	QMAKE_MACOSX_DEPLOYMENT_TARGET = 13.5
 }
 
 SOURCES += \
