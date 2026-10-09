@@ -1,0 +1,12 @@
+{
+	"name": "deps-qmlui-consumer-test",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "node-gyp rebuild -j max",
+		"test": "node --test \"*.test.ts\""
+	},
+	"devDependencies": {
+		"node-gyp": "12.4.0"
+	}
+}
